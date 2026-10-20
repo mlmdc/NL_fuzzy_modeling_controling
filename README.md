@@ -78,9 +78,9 @@
 <a id="results--learnings"></a>
 ## Results & learnings / Résultats & apprentissages
 
-**EN** — The repository includes plots from clustering, local-model, step, and chirp experiments. In the saved step-response plot, the controller output follows the plotted reference across several levels. In the chirp plot, the difference between reference and control becomes more visible as the excitation frequency rises. These figures provide qualitative evidence only: the scripts do not report a consistent aggregate error metric, and the plotted saved results do not identify the exact parameter set or run that produced them.
+**EN** — The repository includes plots from clustering, local-model, step, and chirp experiments. In the saved step-response plot, the controller output follows the plotted reference across several levels. In the chirp plot, the difference between reference and control becomes more visible as the excitation frequency rises. These figures provide qualitative evidence only. `lab5_2.m` calculates a test MSE for the NARX model, but the fuzzy-model experiments do not report a directly comparable aggregate metric, and the saved plots do not identify the exact parameter set or run that produced them.
 
-**FR** — Le dépôt contient des graphiques de clustering, de modèles locaux et d'expériences en échelons et en chirp. Sur le graphique enregistré en échelons, la sortie du contrôleur suit la référence affichée à plusieurs niveaux. Sur le graphique en chirp, l'écart entre référence et commande devient plus visible à mesure que la fréquence d'excitation augmente. Ces figures ne fournissent qu'une indication qualitative : les scripts ne calculent pas de métrique d'erreur agrégée commune et les graphiques enregistrés ne précisent pas le jeu de paramètres ni l'exécution qui les a produits.
+**FR** — Le dépôt contient des graphiques de clustering, de modèles locaux et d'expériences en échelons et en chirp. Sur le graphique enregistré en échelons, la sortie du contrôleur suit la référence affichée à plusieurs niveaux. Sur le graphique en chirp, l'écart entre référence et commande devient plus visible à mesure que la fréquence d'excitation augmente. Ces figures ne fournissent qu'une indication qualitative. `lab5_2.m` calcule une erreur quadratique moyenne de test pour le modèle NARX, mais les expériences sur le modèle flou ne fournissent pas de métrique agrégée directement comparable ; les graphiques enregistrés ne précisent pas non plus le jeu de paramètres ni l'exécution qui les a produits.
 
 <p align="center">
   <img src="medias/controller/controller_output_chirp.png" alt="Reference and controller response during a chirp simulation" width="800">
@@ -93,9 +93,9 @@
 **FR** — Les expériences montrent comment des modèles locaux peuvent représenter différentes zones de fonctionnement, et pourquoi un bon suivi en échelons ne suffit pas à établir la fidélité sur des entrées plus rapides. La reproductibilité est limitée par des données ou initialisations aléatoires sans graine commune, l'implémentation protégée de `helicrane.p`, l'absence de versions MATLAB et de boîtes à outils documentées, l'absence de tests automatisés et des scripts qui mélangent identification, apprentissage, graphiques et essais de commande. Dans `lab6.m`, le signal de référence est multiplié par 10 alors que la commande du procédé est limitée à une plage de 0 à 1,3 ; il convient donc de vérifier l'échelle des signaux et l'interprétation des graphiques avant toute conclusion quantitative. Les suites utiles seraient de documenter une configuration MATLAB vérifiée, de séparer les étapes expérimentales, de rendre les exécutions reproductibles et de publier des métriques numériques sur des signaux de test fixes.
 
 <a id="getting-started"></a>
-## Getting started
+## Getting started / Démarrage
 
-### Requirements
+### Requirements / Prérequis
 
 - MATLAB. No minimum release is documented.
 - The supplied `helicrane.p` MATLAB P-code file, required by the process simulations. Its implementation is protected and is not included as editable source.
@@ -103,7 +103,13 @@
 
 There is no package installer or shared configuration file. Run scripts from the repository root so MATLAB can find the model, data, and helper files.
 
-### Run a process simulation
+- MATLAB. Aucune version minimale n'est documentée.
+- Le fichier P-code MATLAB `helicrane.p`, fourni avec le dépôt et nécessaire aux simulations du procédé. Son implémentation est protégée et n'est pas disponible sous forme de code source modifiable.
+- Pour les expériences complètes, les boîtes à outils MATLAB correspondant aux fonctions utilisées par chaque script : Fuzzy Logic Toolbox, Control System Toolbox, Signal Processing Toolbox et Deep Learning Toolbox (`narxnet`). `gscatter`, utilisé dans les scripts de clustering, peut également nécessiter Statistics and Machine Learning Toolbox. L'exemple simple ci-dessous appelle uniquement le modèle de procédé fourni.
+
+Aucun installateur de dépendances ni fichier de configuration commun n'est fourni. Exécuter les scripts depuis la racine du dépôt afin que MATLAB puisse trouver le modèle, les données et les fonctions auxiliaires.
+
+### Run a process simulation / Lancer une simulation du procédé
 
 ```matlab
 addpath(pwd)
@@ -112,7 +118,9 @@ run('primer_uporabe_helicrane.m')
 
 This example applies a varying input to the process for 2,000 iterations at the script's fixed 0.01-second sample time, then plots the output. For the broader identification, fuzzy-model, and NARX experiments, run `lab5_2.m`. The archived-data scripts `gk.m` and `lab6.m` use `ident_data.mat` and `fuzzy_data.mat`, respectively.
 
-### Choose an experiment
+Cet exemple applique une entrée variable au procédé pendant 2 000 itérations, avec le pas d'échantillonnage de 0,01 s indiqué dans le script, puis trace la sortie. Pour les expériences plus complètes d'identification, de modélisation floue et de comparaison avec NARX, lancer `lab5_2.m`. Les scripts `gk.m` et `lab6.m`, fondés sur des données enregistrées, utilisent respectivement `ident_data.mat` et `fuzzy_data.mat`.
+
+### Choose an experiment / Choisir une expérience
 
 | Goal | Script | Notes |
 | --- | --- | --- |
@@ -124,12 +132,30 @@ This example applies a varying input to the process for 2,000 iterations at the 
 
 `lab5_2.m` and `lab6.m` are not a parameter-free pipeline: the former computes model variables in the MATLAB workspace, while the latter expects compatible model variables in `fuzzy_data.mat`. Confirm that the saved data corresponds to the model and variable names expected by the script before running the control experiment. `narxNet.mat` is a saved network artifact; the README does not assume it is used by every workflow.
 
-### Repository map
+| Objectif | Script | Remarques |
+| --- | --- | --- |
+| Simuler le procédé | `primer_uporabe_helicrane.m` | Exemple court ; nécessite `helicrane.p`. |
+| Identifier des modèles et comparer les réponses floue/NARX | `lab5_2.m` | Génère les signaux d'excitation et entraîne les modèles ; ouvre des figures MATLAB. |
+| Explorer le clustering et les données d'identification enregistrées | `gk.m` | Charge `ident_data.mat` ; contient le clustering de Gustafson-Kessel et l'estimation de modèles locaux. |
+| Simuler la commande fondée sur un modèle flou | `lab6.m` | Charge `fuzzy_data.mat` ; nécessite des paramètres locaux compatibles et `helicrane.p`. |
+| Examiner d'autres expériences de correspondance ou d'identification | `mapping_curve.m`, `lab5.m`, `backup.m` | Scripts et variantes expérimentaux, sans interface en ligne de commande. |
+
+`lab5_2.m` et `lab6.m` ne forment pas un pipeline sans préparation : le premier calcule les variables de modèle dans l'espace de travail MATLAB, tandis que le second attend des variables de modèle compatibles dans `fuzzy_data.mat`. Avant l'expérience de commande, vérifier que les données enregistrées contiennent les paramètres attendus par le script. `narxNet.mat` est un artefact de réseau enregistré ; il n'est pas supposé intervenir dans tous les parcours.
+
+### Repository map / Structure du dépôt
 
 - `primer_uporabe_helicrane.m` — minimal process simulation example.
-- `lab5.m`, `lab5_2.m` — identification, Gustafson-Kessel clustering, local ARX estimation, fuzzy modeling, and NARX experiments.
+- `lab5_2.m` — active identification, Gustafson-Kessel clustering, local ARX estimation, fuzzy modeling, and NARX comparison. `lab5.m` contains alternate identification experiments and commented-out sections.
 - `lab6.m` — fuzzy state-space model and controller simulation.
 - `gk.m`, `mapping_curve.m`, `backup.m` — clustering, model-identification experiments, and working variants.
 - `prbs.m` — PRBS signal generator.
 - `ident_data.mat`, `fuzzy_data.mat`, `narxNet.mat` — saved MATLAB data and model artifacts used by selected scripts.
 - `medias/` — plots and reference documents.
+
+- `primer_uporabe_helicrane.m` — exemple minimal de simulation du procédé.
+- `lab5_2.m` — identification, clustering de Gustafson-Kessel, estimation ARX locale, modélisation floue et comparaison NARX. `lab5.m` contient d'autres expériences d'identification et des sections commentées.
+- `lab6.m` — modèle flou en espace d'état et simulation du contrôleur.
+- `gk.m`, `mapping_curve.m`, `backup.m` — clustering, expériences d'identification et variantes de travail.
+- `prbs.m` — générateur de signaux PRBS.
+- `ident_data.mat`, `fuzzy_data.mat`, `narxNet.mat` — données MATLAB et artefacts de modèles enregistrés, utilisés par certains scripts.
+- `medias/` — graphiques et documents de référence.
