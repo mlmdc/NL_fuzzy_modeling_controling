@@ -77,3 +77,6 @@ run('helicrane_simulation_example.m')
 - `helicrane.p` - protected process simulator / simulateur du procédé protégé.
 - `medias/` - experiment plots and reference documents / graphiques expérimentaux et documents de référence.
 
+## License
+
+This project is licensed under the MIT License; see [LICENSE](LICENSE). The license applies to the original project code. Third-party materials, including `helicrane.p` and the documents in `medias/`, are excluded and remain subject to their respective rights and terms.
