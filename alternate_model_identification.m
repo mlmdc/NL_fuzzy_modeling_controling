@@ -2,7 +2,7 @@ clc; clear; close all;
 
 %% System identification
 
-% Helicrane loop function, from "primer_uporabe_helicrane.m"
+% Helicrane loop function, also demonstrated in "helicrane_simulation_example.m"
 function y = helicrane_it(u, it, x0, y0)
     x = x0;
     y(:, 1) = y0;
@@ -16,7 +16,7 @@ end
 
 % Training signal
 u_train = [0.1*ones(1, 1000), ...
-    1.4*prbs(14)', ...
+    1.4*generate_prbs(14)', ...
     0.7*ones(1, 1000), ...
     0.7*(1 + chirp(0:0.01:100, 0, 99, 5))];
 it_train = length(u_train);
@@ -60,7 +60,7 @@ end
 function [psi, output] = generate_data_set(Fm, n)
     % Fm ~ [lower bound, higher bound];
     sp = 1;
-    input = [Fm(1)*zeros(1, 1000)'; Fm(1)+ (Fm(2) - Fm(1))*prbs(n); Fm(1)+ (Fm(2) - Fm(1))*chirp(0:0.01:10, 0, 9, 10)';Fm(2)*ones(1, 500)'];
+    input = [Fm(1)*zeros(1, 1000)'; Fm(1)+ (Fm(2) - Fm(1))*generate_prbs(n); Fm(1)+ (Fm(2) - Fm(1))*chirp(0:0.01:10, 0, 9, 10)';Fm(2)*ones(1, 500)'];
     %input = [linspace(Fm(1), Fm(2), n)'];
     %input = [Fm(1)*zeros(1000, 1); clip(Fm(1) + sqrt(Fm(2) - Fm(1))*randn(10000, 1),Fm(1),Fm(2))];
     %input = sort((1.4/2)+ sqrt(1)*randn(1, n));
@@ -95,7 +95,7 @@ function sig = create_ident_signal(lb, ub, step, n)
     sig = [];
     for i=1:n_iter
         sig = [sig, (i-1)*step*ones(1, n) + lb];
-        sig = [sig, step*prbs(9)' + (i-1)*step+lb];
+        sig = [sig, step*generate_prbs(9)' + (i-1)*step+lb];
     end
     sig = [sig, (ub+step)*ones(1, n)];
 end
@@ -357,4 +357,3 @@ semilogx(F, unwrap(angle(G_heli))); hold on;
 semilogx(F, unwrap(angle(G_fuzzy)));
 grid on;
 legend();
-
