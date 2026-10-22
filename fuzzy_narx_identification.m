@@ -2,7 +2,7 @@ clc; clear; close all;
 
 %% System identification
 
-% Helicrane loop function, from "primer_uporabe_helicrane.m"
+% Helicrane loop function, also demonstrated in "helicrane_simulation_example.m"
 function y = helicrane_it(u, it, x0, y0)
     x = x0;
     y(:, 1) = y0;
@@ -27,7 +27,7 @@ function sig = create_ident_signal(lb, ub, step, n)
     sig = [];
     for i=1:n_iter
         sig = [sig, (i-1)*step*ones(1, n) + lb];
-        sig = [sig, step*prbs(10)' + (i-1)*step+lb];
+        sig = [sig, step*generate_prbs(10)' + (i-1)*step+lb];
     end
     sig = [sig, (ub+step)*ones(1, n)];
 end

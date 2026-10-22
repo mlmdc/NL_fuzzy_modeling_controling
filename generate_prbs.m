@@ -1,5 +1,5 @@
-function y=prbs(n)
-% function y=prbs(n)
+function y = generate_prbs(n)
+% function y = generate_prbs(n)
 % n = length of the shift register (initial condition of bits 111...1)
 % y = vector of the length 2^n-1: series of values 1 and 0
 
