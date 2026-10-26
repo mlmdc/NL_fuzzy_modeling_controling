@@ -9,7 +9,7 @@
 
 <img src="medias/controller/controller_output_steps.png" alt="Controller response during a step simulation" width="850">
 
-[Portfolio / Portfolio](https://github.com/mlmdc)
+[← Back to portfolio](https://mlmdc.github.io/mlmdc_portfolio/)
 
 </div>
 
