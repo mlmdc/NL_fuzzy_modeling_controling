@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/nl_fuzzy_icon.png" alt="Controller response during a step simulation." width="70%">
+  <img src="medias/nl_fuzzy_icon.png" alt="Sikorsky Helicrane as example of a helicrane." width="70%">
 </p>
 
 <h1 align="center">Fuzzy Modeling and Control of a Helicrane</h1>
