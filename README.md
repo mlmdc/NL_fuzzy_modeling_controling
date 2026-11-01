@@ -1,13 +1,13 @@
-<div align="center">
+<p align="center">
+  <img src="src/nl_fuzzy_icon.png" alt="Controller response during a step simulation." width="70%">
+</p>
 
-# Fuzzy Modeling and Control of a Helicrane
-## Modélisation floue et commande d'un hélicrane
+<h1 align="center">Fuzzy Modeling and Control of a Helicrane</h1>
 
-**🇬🇧 EN** - MATLAB experiments in nonlinear system identification, Takagi–Sugeno fuzzy modeling, NARX comparison, and model-based control.
-
-**🇫🇷 FR** - Expériences MATLAB d'identification de systèmes non linéaires, de modélisation floue de Takagi–Sugeno, de comparaison NARX et de commande fondée sur un modèle.
-
-<img src="medias/controller/controller_output_steps.png" alt="Controller response during a step simulation" width="850">
+<p align="left">
+  <strong>🇬🇧 EN - </strong> MATLAB experiments in nonlinear system identification, Takagi–Sugeno fuzzy modeling, NARX comparison, and model-based control.<br>
+  <strong>🇫🇷 FR - </strong> Expériences MATLAB d'identification de systèmes non linéaires, de modélisation floue de Takagi–Sugeno, de comparaison NARX et de commande fondée sur un modèle.
+</p>
 
 [← Back to portfolio](https://mlmdc.github.io/mlmdc_portfolio/)
 
