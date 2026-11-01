@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="medias/nl_fuzzy_icon.png" alt="Sikorsky Helicrane as example of a helicrane." width="70%">
+  <img src="medias/nl_fuzzy_icon.png" alt="Sikorsky Helicrane as example of a helicrane." width="85%">
 </p>
 
 <h1 align="center">Fuzzy Modeling and Control of a Helicrane</h1>
